@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="TicTacToeUI.UserControls.GameUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:uc="clr-namespace:TicTacToeUI.UserControls"
+             mc:Ignorable="d" Height="395.745" Width="1187.234">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <UniformGrid Rows="3" >
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+            <uc:CellUserControl/>
+        </UniformGrid>
+
+
+        <Grid Grid.Column="1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text= "User 1(X):" Margin="25" FontWeight="Bold" FontSize="20" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Margin="25"
+                       Text="{Binding Path=FirstPlayer.Name}"/>
+
+            <TextBlock  Grid.Row="1" Grid.Column="0" Text="User 2(0):" Margin="25" FontWeight="Bold" FontSize="20" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="25"
+                       Text="{Binding Path=SecondPlayer.Name}"/>
+        </Grid>
+    </Grid>
+</UserControl>

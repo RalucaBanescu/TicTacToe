@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="TicTacToeUI.UserControls.StartupUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TicTacToeUI.UserControls">
+    <Border Background="#7FFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center"
+                >
+        <Grid Grid.Column="0" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text= "User 1(X):" Margin="25" FontWeight="Bold" FontSize="20" />
+            <TextBlock  Grid.Row="2" Grid.Column="0" Text="User 2(0):" Margin="25" FontWeight="Bold" FontSize="20" />
+            <TextBox Grid.Row="1" Name="txtFirstPlayer" Grid.Column="1" Text=" " Margin="25"  Width="250"/>
+            <TextBox Name="txtSecoundPlayer" Grid.Row="2" Grid.Column="1" Text=" " Margin="25" Width="250"/>
+
+            <Button Content="START GAME" Grid.Row="3" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Center" Width="250" 
+                    Margin="0,20,0,0" Padding="10"
+                    FontWeight="Bold" FontSize="22" Click="Button_Click" />
+
+        </Grid>
+    </Border>
+</UserControl>
