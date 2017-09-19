@@ -3,15 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-              xmlns:uc="clr-namespace:TicTacToeUI.UserControls"
-             mc:Ignorable="d" Height="395.745" Width="1187.234">
+              xmlns:uc="clr-namespace:TicTacToeUI.UserControls">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <UniformGrid Rows="3" >
+        <!--<UniformGrid Rows="3" >
             <uc:CellUserControl/>
             <uc:CellUserControl/>
             <uc:CellUserControl/>
@@ -21,28 +20,56 @@
             <uc:CellUserControl/>
             <uc:CellUserControl/>
             <uc:CellUserControl/>
-        </UniformGrid>
+        </UniformGrid>-->
+
+        <ItemsControl Name="listBoxCells">
+            <!-- cum sunt asezati itemii -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="3"></UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <!-- cum arata un item-->
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <uc:CellUserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                        MouseLeftButtonDown="cell_MouseLeftButtonDown"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
+        </ItemsControl>
 
 
         <Grid Grid.Column="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="72*"/>
+                <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text= "User 1(X):" Margin="25" FontWeight="Bold" FontSize="20" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text= "Randul lui:" Margin="25" 
+                       Style="{StaticResource textBlockStyle}"
+                       FontWeight="Bold" FontSize="20" />
             <TextBlock Grid.Row="0" Grid.Column="1" Margin="25"
-                       Text="{Binding Path=FirstPlayer.Name}"/>
+                       Text="{Binding Path=ActivePlayer.Name}" 
+                       FontSize="20"/>
 
-            <TextBlock  Grid.Row="1" Grid.Column="0" Text="User 2(0):"
+            <TextBlock Grid.Row="1" Grid.Column="0" Text= "User 1(X):" Margin="25" 
+                       Style="{StaticResource textBlockStyle}"
+                       FontWeight="Bold" FontSize="20" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="25"
+                       Text="{Binding Path=FirstPlayer.Name}" FontSize="20"/>
+
+            <TextBlock  Grid.Row="2" Grid.Column="0" Text="User 2(O):"
                         Style="{StaticResource textBlockStyle}"
                         Margin="25" FontWeight="Bold" FontSize="20" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="25"
-                       Text="{Binding Path=SecondPlayer.Name}"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Margin="25"
+                       Text="{Binding Path=SecondPlayer.Name}" FontSize="20"/>
         </Grid>
     </Grid>
 </UserControl>

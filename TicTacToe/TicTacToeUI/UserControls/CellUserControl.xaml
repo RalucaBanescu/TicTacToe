@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TicTacToeUI.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Border BorderBrush="Red" BorderThickness="2" Margin="10" Background="LightBlue"
-            CornerRadius="20"/>
+             xmlns:local="clr-namespace:TicTacToeUI.UserControls">
+    <Border BorderBrush="Red" BorderThickness="2" Margin="10" Background="LightBlue">
+        <Border.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.375"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Border.RenderTransform>
+        <TextBlock FontSize="30"  VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Path=ActivePlayer.Sign}"/>
+    </Border>
 </UserControl>

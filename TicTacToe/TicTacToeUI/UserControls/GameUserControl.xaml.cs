@@ -28,7 +28,29 @@ namespace TicTacToeUI.UserControls
             InitializeComponent();
             this.Game = new TicTacToeGame(firstPlayerName, secondPlayerName);
             this.DataContext = this.Game;
+
+            for (int i = 0; i < TicTacToeGame.BoardSize; i++)
+            {
+                for (int j = 0; j < TicTacToeGame.BoardSize; j++)
+                {
+                    listBoxCells.Items.Add(this.Game.Board[i, j]);
+                }
+            }
+
         }
 
+        private void cell_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            CellUserControl cellUC = sender as CellUserControl;
+            if (cellUC!=null)
+            {
+                Cell cell = cellUC.DataContext as Cell;
+                if (cell!=null)
+                {
+                    this.Game.MarkCellWithActivePlayer(cell);
+                }
+            }
+            
+        }
     }
 }
