@@ -38,7 +38,9 @@
             <TextBlock Grid.Row="0" Grid.Column="1" Margin="25"
                        Text="{Binding Path=FirstPlayer.Name}"/>
 
-            <TextBlock  Grid.Row="1" Grid.Column="0" Text="User 2(0):" Margin="25" FontWeight="Bold" FontSize="20" />
+            <TextBlock  Grid.Row="1" Grid.Column="0" Text="User 2(0):"
+                        Style="{StaticResource textBlockStyle}"
+                        Margin="25" FontWeight="Bold" FontSize="20" />
             <TextBlock Grid.Row="1" Grid.Column="1" Margin="25"
                        Text="{Binding Path=SecondPlayer.Name}"/>
         </Grid>

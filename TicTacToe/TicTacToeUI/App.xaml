@@ -4,6 +4,18 @@
              xmlns:local="clr-namespace:TicTacToeUI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- default style for textblock -->
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!--  style with name (key) -->
+        <Style TargetType="TextBlock" x:Key="textBlockStyle">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Foreground" Value="DarkBlue"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+        </Style>
     </Application.Resources>
 </Application>

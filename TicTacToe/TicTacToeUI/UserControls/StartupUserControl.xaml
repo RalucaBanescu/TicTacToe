@@ -22,8 +22,8 @@
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text= "User 1(X):" Margin="25" FontWeight="Bold" FontSize="20" />
             <TextBlock  Grid.Row="2" Grid.Column="0" Text="User 2(0):" Margin="25" FontWeight="Bold" FontSize="20" />
-            <TextBox Grid.Row="1" Name="txtFirstPlayer" Grid.Column="1" Text=" " Margin="25"  Width="250"/>
-            <TextBox Name="txtSecoundPlayer" Grid.Row="2" Grid.Column="1" Text=" " Margin="25" Width="250"/>
+            <TextBox FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Name="txtFirstPlayer" Grid.Column="1" Text=" " Margin="25"  Width="250"/>
+            <TextBox FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Name="txtSecoundPlayer" Grid.Row="2" Grid.Column="1" Text=" " Margin="25" Width="250"/>
 
             <Button Content="START GAME" Grid.Row="3" Grid.ColumnSpan="2" 
                     HorizontalAlignment="Center" Width="250" 
