@@ -36,21 +36,28 @@ namespace TicTacToeUI.UserControls
                     listBoxCells.Items.Add(this.Game.Board[i, j]);
                 }
             }
+            //abonare la event
+            Game.GameEndedWithResultEvent += Game_GameEndedWithResultEvent;
+        }
 
+        //event handler
+        private void Game_GameEndedWithResultEvent(GameResult result)
+        {
+            MessageBox.Show("Game ended with result: " + result.ToString());
         }
 
         private void cell_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             CellUserControl cellUC = sender as CellUserControl;
-            if (cellUC!=null)
+            if (cellUC != null)
             {
                 Cell cell = cellUC.DataContext as Cell;
-                if (cell!=null)
+                if (cell != null)
                 {
                     this.Game.MarkCellWithActivePlayer(cell);
                 }
             }
-            
+
         }
     }
 }

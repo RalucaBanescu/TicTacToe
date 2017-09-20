@@ -7,14 +7,23 @@ using System.Windows;
 
 namespace TicTacToeUI.Logic
 {
-    public class TicTacToeGame: DependencyObject
+    public enum GameResult
+    {
+        Tie,
+        Win,
+        InProgress
+    }
 
+    public delegate void GameEndedWithResult(GameResult result);
+
+    public class TicTacToeGame : DependencyObject
     {
         public Cell[,] Board { get; set; }
         public Player FirstPlayer { get; set; }
         public Player SecondPlayer { get; set; }
         public static int BoardSize = 3;
 
+        public event GameEndedWithResult GameEndedWithResultEvent;
 
         public Player ActivePlayer
         {
@@ -50,16 +59,59 @@ namespace TicTacToeUI.Logic
         internal void MarkCellWithActivePlayer(Cell cell)
         {
             cell.ActivePlayer = this.ActivePlayer;
-           if( ActivePlayer!= FirstPlayer)
+            GameResult result = GameEnded();
+            if (result == GameResult.InProgress)
             {
-                ActivePlayer = FirstPlayer;
+                if (ActivePlayer != FirstPlayer)
+                {
+                    ActivePlayer = FirstPlayer;
+                }
+                else
+                {
+                    ActivePlayer = SecondPlayer;
+                }
             }
-           else
+            else
             {
-                ActivePlayer = SecondPlayer;
+                // mesaj
+                GameEndedWithResultEvent(result);
             }
         }
 
+        private GameResult GameEnded()
+        {
+            for (int i = 0; i < BoardSize; i++)
 
+            {
+                if (Board[i, 0].ActivePlayer == Board[i, 1].ActivePlayer 
+                    && Board[i, 1].ActivePlayer == Board[i, 2].ActivePlayer 
+                    && Board[i, 0].ActivePlayer != null)
+                {
+                    return GameResult.Win;
+                }
+
+            }
+            return GameResult.InProgress;
+            /*
+                        for (int j = 0; j < BoardSize; j++)
+                        {
+                            if (Board[j, j] == Board[j + 1, j] && Board[j + 1, j] == Board[j + 2, j] && Board[j, j] != null)
+                                return true;
+                        }
+
+
+                        for (int i = 0; i < BoardSize; i++)
+                        {
+                            if (Board[i, i] == Board[i + 1, i + 1] && Board[i + 1, i + 1] == Board[i + 2, i + 2] && Board[i + 1, i + 1] != null)
+                            {
+                                return true;
+                            }
+                        }
+                        if (Board[0, 2] == Board[1, 2] && Board[1, 2] == Board[2, 0] && Board[0, 2] != null)
+                        {
+                            return true;
+                        }
+                        */
+        }
     }
 }
