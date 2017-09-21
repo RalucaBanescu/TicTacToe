@@ -56,62 +56,104 @@ namespace TicTacToeUI.Logic
 
         }
 
+        internal void Reset()
+        {
+            for (int i = 0; i < BoardSize; i++)
+            {
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    Board[i, j].ActivePlayer = null;
+                }
+            }
+        }
+
         internal void MarkCellWithActivePlayer(Cell cell)
         {
-            cell.ActivePlayer = this.ActivePlayer;
-            GameResult result = GameEnded();
-            if (result == GameResult.InProgress)
-            {
-                if (ActivePlayer != FirstPlayer)
+            if (cell.ActivePlayer == null)
+            { // mark cell
+                cell.ActivePlayer = this.ActivePlayer;
+
+                // test if game ended
+                GameResult result = GameEnded();
+
+                // switch players if game not ended
+                if (result == GameResult.InProgress)
                 {
-                    ActivePlayer = FirstPlayer;
+                    if (ActivePlayer != FirstPlayer)
+                    {
+                        ActivePlayer = FirstPlayer;
+                    }
+                    else
+                    {
+                        ActivePlayer = SecondPlayer;
+                    }
                 }
                 else
                 {
-                    ActivePlayer = SecondPlayer;
+                    // if game ended, notify UI to show message
+                    GameEndedWithResultEvent(result);
                 }
-            }
-            else
-            {
-                // mesaj
-                GameEndedWithResultEvent(result);
             }
         }
 
         private GameResult GameEnded()
         {
-            for (int i = 0; i < BoardSize; i++)
 
+            for (int i = 0; i < BoardSize; i++)
             {
-                if (Board[i, 0].ActivePlayer == Board[i, 1].ActivePlayer 
-                    && Board[i, 1].ActivePlayer == Board[i, 2].ActivePlayer 
+                if (Board[i, 0].ActivePlayer == Board[i, 1].ActivePlayer
+                    && Board[i, 1].ActivePlayer == Board[i, 2].ActivePlayer
                     && Board[i, 0].ActivePlayer != null)
                 {
                     return GameResult.Win;
+
                 }
+            }
+            for (int i = 0; i < BoardSize; i++)
+            {
+                if (Board[0, i].ActivePlayer == Board[1, i].ActivePlayer
+                        && Board[1, i].ActivePlayer == Board[2, i].ActivePlayer
+                        && Board[0, i].ActivePlayer != null)
+                {
+                    return GameResult.Win;
+                }
+            }
+
+
+            if (Board[0, 0].ActivePlayer == Board[1, 1].ActivePlayer
+                     && Board[1, 1].ActivePlayer == Board[2, 2].ActivePlayer
+                     && Board[0, 0].ActivePlayer != null)
+            {
+                return GameResult.Win;
+            }
+
+            if (Board[0, 2].ActivePlayer == Board[1, 1].ActivePlayer &&
+                      Board[1, 1].ActivePlayer == Board[2, 0].ActivePlayer
+                      && Board[0, 2].ActivePlayer != null)
+            {
+                return GameResult.Win;
+            }
+
+            bool allCellsAreOccupied = true;
+            for (int i = 0; i < BoardSize; i++)
+            {
+                for (int j = 0; j < BoardSize; j++)
+                {
+                    if (Board[i, j].ActivePlayer == null)
+                    {
+                        allCellsAreOccupied = false;
+                    }
+                }
+            }
+
+            if (allCellsAreOccupied)
+            {
+                return GameResult.Tie;
 
             }
+
             return GameResult.InProgress;
-            /*
-                        for (int j = 0; j < BoardSize; j++)
-                        {
-                            if (Board[j, j] == Board[j + 1, j] && Board[j + 1, j] == Board[j + 2, j] && Board[j, j] != null)
-                                return true;
-                        }
-
-
-                        for (int i = 0; i < BoardSize; i++)
-                        {
-                            if (Board[i, i] == Board[i + 1, i + 1] && Board[i + 1, i + 1] == Board[i + 2, i + 2] && Board[i + 1, i + 1] != null)
-                            {
-                                return true;
-                            }
-                        }
-                        if (Board[0, 2] == Board[1, 2] && Board[1, 2] == Board[2, 0] && Board[0, 2] != null)
-                        {
-                            return true;
-                        }
-                        */
         }
     }
 }
+

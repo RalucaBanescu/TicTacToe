@@ -43,7 +43,15 @@ namespace TicTacToeUI.UserControls
         //event handler
         private void Game_GameEndedWithResultEvent(GameResult result)
         {
-            MessageBox.Show("Game ended with result: " + result.ToString());
+            if (result == GameResult.Win)
+            {
+                MessageBox.Show("Joc castigat de: " + this.Game.ActivePlayer.Name);
+            }
+            if (result ==GameResult.Tie)
+            {
+                MessageBox.Show("Joc finalizat cu egalitate");
+            }
+            this.Game.Reset();
         }
 
         private void cell_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
