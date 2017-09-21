@@ -119,17 +119,28 @@ namespace TicTacToeUI.Logic
                 }
             }
 
-
-            if (Board[0, 0].ActivePlayer == Board[1, 1].ActivePlayer
-                     && Board[1, 1].ActivePlayer == Board[2, 2].ActivePlayer
-                     && Board[0, 0].ActivePlayer != null)
+            bool isPrimaryDiagonalOccupiedBySamePlayer = true;
+            for (int i = 0; i < BoardSize - 1; i++)
+            {
+                if (Board[i, i].ActivePlayer != Board[i + 1, i + 1].ActivePlayer)
+                {
+                    isPrimaryDiagonalOccupiedBySamePlayer = false;
+                }
+            }
+            if (isPrimaryDiagonalOccupiedBySamePlayer && Board[0, 0].ActivePlayer != null)
             {
                 return GameResult.Win;
             }
 
-            if (Board[0, 2].ActivePlayer == Board[1, 1].ActivePlayer &&
-                      Board[1, 1].ActivePlayer == Board[2, 0].ActivePlayer
-                      && Board[0, 2].ActivePlayer != null)
+            bool isSecondDiagonalOccupiedBySamePlayer = true;
+            for (int i = 0; i < BoardSize - 1; i++)
+            {
+                if (Board[i, BoardSize - 1 - i].ActivePlayer != Board[i + 1, BoardSize - 2 - i].ActivePlayer)
+                {
+                    isSecondDiagonalOccupiedBySamePlayer = false;
+                }
+            }
+            if (isSecondDiagonalOccupiedBySamePlayer && Board[0, BoardSize - 1].ActivePlayer != null)
             {
                 return GameResult.Win;
             }
