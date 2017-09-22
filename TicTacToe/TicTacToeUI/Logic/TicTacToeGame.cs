@@ -99,16 +99,24 @@ namespace TicTacToeUI.Logic
         private GameResult GameEnded()
         {
 
-            for (int i = 0; i < BoardSize; i++)
+            for (int row = 0; row < BoardSize; row++)
             {
-                if (Board[i, 0].ActivePlayer == Board[i, 1].ActivePlayer
-                    && Board[i, 1].ActivePlayer == Board[i, 2].ActivePlayer
-                    && Board[i, 0].ActivePlayer != null)
+                bool isRowOccupiedBySamePlayer = true;
+                for (int col = 0; col< BoardSize-1; col++)
+                {
+                    if (Board[row, col].ActivePlayer != Board[row, col + 1].ActivePlayer)
+                    {
+                        isRowOccupiedBySamePlayer = false;
+                    }
+                }
+
+                if (isRowOccupiedBySamePlayer && Board[row, 0].ActivePlayer != null)
                 {
                     return GameResult.Win;
-
                 }
             }
+
+
             for (int i = 0; i < BoardSize; i++)
             {
                 if (Board[0, i].ActivePlayer == Board[1, i].ActivePlayer
