@@ -68,13 +68,14 @@ namespace TicTacToeUI.Logic
         }
 
         internal void MarkCellWithActivePlayer(Cell cell)
-        {
+        {   
             if (cell.ActivePlayer == null)
             { // mark cell
                 cell.ActivePlayer = this.ActivePlayer;
 
                 // test if game ended
                 GameResult result = GameEnded();
+                
 
                 // switch players if game not ended
                 if (result == GameResult.InProgress)
@@ -90,6 +91,12 @@ namespace TicTacToeUI.Logic
                 }
                 else
                 {
+                    if (result == GameResult.Win)
+                    {
+                        ActivePlayer.TimesWon++;
+                    }
+
+                    
                     // if game ended, notify UI to show message
                     GameEndedWithResultEvent(result);
                 }

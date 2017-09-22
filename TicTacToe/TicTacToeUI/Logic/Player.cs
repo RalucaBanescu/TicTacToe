@@ -21,12 +21,26 @@ namespace TicTacToeUI.Logic
 
 
 
+        public int TimesWon
+        {
+            get { return (int)GetValue(TimesWonProperty); }
+            set { SetValue(TimesWonProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TimesWon.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TimesWonProperty =
+            DependencyProperty.Register("TimesWon", typeof(int), typeof(Player));
+
+
+
+
         public string Name { get; set; }
 
         public Player(string name, string sign)
         {
             this.Name = name;
             this.Sign = sign;
+            this.TimesWon =0;
         }
     }
 }

@@ -59,17 +59,20 @@
                        Text="{Binding Path=ActivePlayer.Name}" 
                        FontSize="20"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="0" Text= "User 1(X):" Margin="25" 
+            <TextBlock Grid.Row="1" Grid.Column="0" 
+                       Text="{Binding Path=FirstPlayer.Name, StringFormat='{} Scor {0} (X):'}" 
+                       Margin="25" 
                        Style="{StaticResource textBlockStyle}"
                        FontWeight="Bold" FontSize="20" />
             <TextBlock Grid.Row="1" Grid.Column="1" Margin="25"
-                       Text="{Binding Path=FirstPlayer.Name}" FontSize="20"/>
+                       Text="{Binding Path=FirstPlayer.TimesWon}" FontSize="20"/>
 
-            <TextBlock  Grid.Row="2" Grid.Column="0" Text="User 2(O):"
+            <TextBlock  Grid.Row="2" Grid.Column="0"
+                        Text="{Binding Path=SecondPlayer.Name, StringFormat='{} Scor {0} (O):'}" 
                         Style="{StaticResource textBlockStyle}"
                         Margin="25" FontWeight="Bold" FontSize="20" />
             <TextBlock Grid.Row="2" Grid.Column="1" Margin="25"
-                       Text="{Binding Path=SecondPlayer.Name}" FontSize="20"/>
+                       Text="{Binding Path=SecondPlayer.TimesWon}" FontSize="20"/>
         </Grid>
     </Grid>
 </UserControl>
