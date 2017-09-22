@@ -98,11 +98,11 @@ namespace TicTacToeUI.Logic
 
         private GameResult GameEnded()
         {
-
+            #region Check rows
             for (int row = 0; row < BoardSize; row++)
             {
                 bool isRowOccupiedBySamePlayer = true;
-                for (int col = 0; col< BoardSize-1; col++)
+                for (int col = 0; col < BoardSize - 1; col++)
                 {
                     if (Board[row, col].ActivePlayer != Board[row, col + 1].ActivePlayer)
                     {
@@ -115,18 +115,27 @@ namespace TicTacToeUI.Logic
                     return GameResult.Win;
                 }
             }
+            #endregion
 
-
-            for (int i = 0; i < BoardSize; i++)
+            #region Check columns
+            for (int col = 0; col < BoardSize; col++)
             {
-                if (Board[0, i].ActivePlayer == Board[1, i].ActivePlayer
-                        && Board[1, i].ActivePlayer == Board[2, i].ActivePlayer
-                        && Board[0, i].ActivePlayer != null)
+                bool isColOccupiedBySamePlayer = true;
+                for (int row = 0; row < BoardSize - 1; row++)
+                {
+                    if (Board[row, col].ActivePlayer != Board[row + 1, col].ActivePlayer)
+                    {
+                        isColOccupiedBySamePlayer = false;
+                    }
+                }
+                if (isColOccupiedBySamePlayer && Board[0, col].ActivePlayer != null)
                 {
                     return GameResult.Win;
                 }
             }
+            #endregion
 
+            #region Check primary diagonal 
             bool isPrimaryDiagonalOccupiedBySamePlayer = true;
             for (int i = 0; i < BoardSize - 1; i++)
             {
@@ -139,7 +148,9 @@ namespace TicTacToeUI.Logic
             {
                 return GameResult.Win;
             }
+            #endregion
 
+            #region Check Second diagonal
             bool isSecondDiagonalOccupiedBySamePlayer = true;
             for (int i = 0; i < BoardSize - 1; i++)
             {
@@ -152,6 +163,7 @@ namespace TicTacToeUI.Logic
             {
                 return GameResult.Win;
             }
+           #endregion
 
             bool allCellsAreOccupied = true;
             for (int i = 0; i < BoardSize; i++)
